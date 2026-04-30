@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projeto — Pedro Almeida</title>
+<link href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0a0a;
+    --surface: #111111;
+    --surface2: #161616;
+    --border: #1e1e1e;
+    --border2: #252525;
+    --text: #e8e4dc;
+    --text2: #888;
+    --text3: #444;
+    --accent: rgb(6, 202, 241);
+    --ff-head: 'Arimo', Helvetica, sans-serif;
+    --ff-body: Helvetica, Arial, sans-serif;
+    --content-max: 1200px;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: var(--ff-body); overflow-x: hidden; }
+
+  /* ── NAV ─────────────────────────── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; gap: 24px;
+    padding: 0 max(24px, calc((100vw - var(--content-max)) / 2)); height: 64px;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-back {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 13px; color: var(--text2); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-back:hover { color: var(--text); }
+  .nav-back svg { transition: transform 0.2s; }
+  .nav-back:hover svg { transform: translateX(-3px); }
+  .nav-logo {
+    font-family: var(--ff-head); font-size: 16px; font-weight: 800;
+    color: var(--text); text-decoration: none; margin-left: auto;
+  }
+
+  /* ── VIDEO HERO ───────────────────── */
+  .project-hero {
+    padding-top: 64px;
+    position: relative; background: #050505;
+  }
+  .project-video-wrap {
+    position: relative; width: 100%;
+    aspect-ratio: 16/9; max-height: 72vh;
+    overflow: hidden; background: #080808;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .project-video-placeholder {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .project-video-frame {
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+  .project-video-unavailable {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    color: var(--text3);
+    text-transform: uppercase;
+    font-family: 'Courier New', monospace;
+  }
+  .project-video-placeholder svg.bg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .project-play-btn {
+    position: relative; z-index: 1;
+    width: 80px; height: 80px; border-radius: 50%;
+    border: 1.5px solid rgba(232,228,220,0.35);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: all 0.3s;
+    background: rgba(10,10,10,0.4); backdrop-filter: blur(8px);
+  }
+  .project-play-btn:hover { border-color: var(--text); transform: scale(1.08); background: rgba(10,10,10,0.6); }
+  .project-play-btn svg { margin-left: 5px; }
+
+  /* ── PROJECT INFO ─────────────────── */
+  .project-info {
+    display: grid; grid-template-columns: 1fr 280px; gap: 64px;
+    width: min(var(--content-max), calc(100% - 96px));
+    margin: 0 auto;
+    padding: 56px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .project-eyebrow {
+    font-size: 10px; letter-spacing: 0.22em; color: var(--accent);
+    text-transform: uppercase; margin-bottom: 12px;
+  }
+  .project-title {
+    font-family: var(--ff-head); font-size: clamp(36px, 5vw, 64px);
+    font-weight: 800; letter-spacing: -0.04em; line-height: 0.93;
+    margin-bottom: 28px; color: var(--text);
+  }
+  .project-desc {
+    font-size: 16px; line-height: 1.8; color: #a0998f;
+    max-width: 580px;
+  }
+  .project-desc p + p { margin-top: 16px; }
+
+  .project-meta { padding-top: 4px; }
+  .meta-label {
+    font-size: 9px; letter-spacing: 0.2em; color: var(--text3);
+    text-transform: uppercase; margin-bottom: 16px;
+    border-bottom: 1px solid var(--border); padding-bottom: 10px;
+  }
+  .meta-item { margin-bottom: 20px; }
+  .meta-item-key { font-size: 10px; letter-spacing: 0.12em; color: var(--text3); text-transform: uppercase; margin-bottom: 3px; }
+  .meta-item-val { font-size: 14px; color: var(--text2); }
+
+  /* ── BEHIND THE SCENES ──────────────── */
+  .bts-section {
+    width: min(var(--content-max), calc(100% - 96px));
+    margin: 0 auto;
+    padding: 64px 0;
+  }
+  .bts-header {
+    display: flex; align-items: baseline; justify-content: space-between;
+    margin-bottom: 32px;
+  }
+  .bts-label { font-size: 10px; letter-spacing: 0.22em; color: var(--text3); text-transform: uppercase; }
+  .bts-title { font-family: var(--ff-head); font-size: 28px; font-weight: 700; letter-spacing: -0.03em; margin-top: 6px; }
+  .bts-count { font-size: 11px; color: var(--text3); }
+
+  .bts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+  }
+  .bts-item {
+    position: relative; overflow: hidden; cursor: pointer;
+  }
+  .bts-item.wide { grid-column: span 2; }
+  .bts-item.tall { grid-row: span 2; }
+  .bts-thumb {
+    width: 100%; height: 100%; min-height: 180px;
+    background: var(--surface2);
+    transition: transform 0.5s cubic-bezier(0.25,0.1,0.25,1);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .bts-item:hover .bts-thumb { transform: scale(1.03); }
+  .bts-thumb img.bts-media {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+  }
+  .bts-thumb::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(10, 10, 10, 0.58), rgba(10, 10, 10, 0.1));
+    z-index: 0;
+    pointer-events: none;
+  }
+  .bts-thumb svg.bg-hatch {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.35;
+    pointer-events: none;
+  }
+  .bts-thumb-label {
+    position: relative; z-index: 1;
+    font-size: 9px; letter-spacing: 0.15em; color: var(--text3);
+    font-family: 'Courier New', monospace; text-transform: uppercase;
+    text-align: center; padding: 8px;
+  }
+  .bts-type-badge {
+    position: absolute; top: 10px; right: 10px;
+    font-size: 8px; letter-spacing: 0.15em; color: var(--text3);
+    text-transform: uppercase; background: rgba(10,10,10,0.7);
+    padding: 3px 7px; backdrop-filter: blur(4px);
+    z-index: 2;
+  }
+
+  /* ── LIGHTBOX ──────────────────────── */
+  .bts-lightbox {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 2000;
+    padding: 24px;
+  }
+  .bts-lightbox.open { display: flex; }
+  .bts-lightbox-content {
+    width: min(1100px, 100%);
+    max-height: 90vh;
+    position: relative;
+  }
+  .bts-lightbox img,
+  .bts-lightbox iframe {
+    width: 100%;
+    max-height: 90vh;
+    display: block;
+    border: 0;
+    object-fit: contain;
+    background: #000;
+  }
+  .bts-lightbox iframe { aspect-ratio: 16 / 9; height: auto; }
+  .bts-lightbox-close {
+    position: absolute;
+    top: -44px;
+    right: 0;
+    border: 1px solid #2d2d2d;
+    background: #111;
+    color: #ddd;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 8px 10px;
+    cursor: pointer;
+  }
+
+  /* ── NEXT PROJECT ─────────────────── */
+  .next-project {
+    border-top: 1px solid var(--border);
+    display: grid; grid-template-columns: 1fr 1fr;
+    min-height: 200px;
+    width: min(var(--content-max), calc(100% - 96px));
+    margin: 0 auto;
+  }
+  .next-project-label {
+    padding: 48px; border-right: 1px solid var(--border);
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .np-eyebrow { font-size: 10px; letter-spacing: 0.2em; color: var(--text3); text-transform: uppercase; margin-bottom: 12px; }
+  .np-title { font-family: var(--ff-head); font-size: 32px; font-weight: 800; letter-spacing: -0.03em; color: var(--text2); }
+  .next-project-card {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 48px; text-decoration: none;
+    transition: background 0.25s;
+    gap: 24px;
+  }
+  .next-project-card:hover { background: var(--surface); }
+  .np-card-thumb {
+    width: 120px; height: 68px; flex-shrink: 0;
+    background: var(--surface2); position: relative; overflow: hidden;
+  }
+  .np-card-info { flex: 1; }
+  .np-card-cat { font-size: 9px; letter-spacing: 0.18em; color: var(--accent); text-transform: uppercase; margin-bottom: 4px; }
+  .np-card-title { font-family: var(--ff-head); font-size: 18px; font-weight: 700; color: var(--text); }
+  .np-arrow { color: var(--text3); font-size: 24px; flex-shrink: 0; transition: transform 0.2s; }
+  .next-project-card:hover .np-arrow { transform: translateX(6px); }
+
+  /* ── FOOTER ───────────────────────── */
+  footer {
+    border-top: 1px solid var(--border);
+    width: min(var(--content-max), calc(100% - 96px));
+    margin: 0 auto;
+    padding: 24px 0;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .footer-logo { font-family: var(--ff-head); font-size: 14px; font-weight: 800; color: var(--text2); }
+  .footer-copy { font-size: 11px; color: var(--text3); }
+
+  /* ── RESPONSIVO ≤ 768px ─────────────────────── */
+  @media (max-width: 768px) {
+    nav { padding: 0 24px; }
+
+    .project-info {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      width: calc(100% - 48px);
+      padding: 40px 0;
+    }
+    .project-meta {
+      border-top: 1px solid var(--border);
+      padding-top: 32px;
+    }
+
+    .bts-section {
+      width: calc(100% - 48px);
+      padding: 48px 0;
+    }
+    .bts-grid { grid-template-columns: repeat(2, 1fr); }
+    .bts-item.wide { grid-column: span 1; }
+    .bts-item.tall { grid-row: span 1; }
+
+    .next-project {
+      grid-template-columns: 1fr;
+      width: calc(100% - 48px);
+    }
+    .next-project-label { border-right: none; border-bottom: 1px solid var(--border); padding: 32px 24px; }
+    .next-project-card { padding: 32px 24px; }
+
+    footer {
+      width: calc(100% - 48px);
+      padding: 20px 0;
+    }
+  }
+
+  /* ── RESPONSIVO ≤ 480px ─────────────────────── */
+  @media (max-width: 480px) {
+    .project-info {
+      width: calc(100% - 32px);
+      padding: 32px 0;
+    }
+    .bts-section {
+      width: calc(100% - 32px);
+      padding: 40px 0;
+    }
+    .bts-grid { grid-template-columns: 1fr; }
+    .next-project {
+      width: calc(100% - 32px);
+    }
+    footer {
+      width: calc(100% - 32px);
+      padding: 20px 0;
+      flex-direction: column;
+      gap: 8px;
+      text-align: center;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-back" href="index.html">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="#888" stroke-width="1.5" stroke-linecap="round"/></svg>
+    Todos os trabalhos
+  </a>
+  <a class="nav-logo" href="index.html">Pedro Almeida</a>
+</nav>
+
+<!-- VIDEO HERO -->
+<div class="project-hero">
+  <div class="project-video-wrap">
+    <div class="project-video-placeholder" id="project-video-player"></div>
+  </div>
+</div>
+
+<!-- PROJECT INFO -->
+<div class="project-info" id="project-content">
+  <!-- preenchido via JS -->
+</div>
+
+<!-- BEHIND THE SCENES -->
+<div class="bts-section" id="bts-section">
+  <div class="bts-header">
+    <div>
+      <div class="bts-label" id="bts-label">Making of</div>
+      <div class="bts-title" id="bts-title">Bastidores</div>
+    </div>
+    <div class="bts-count" id="bts-count">0 mídias</div>
+  </div>
+  <div class="bts-grid" id="bts-grid"></div>
+</div>
+<div class="bts-lightbox" id="bts-lightbox" aria-hidden="true">
+  <div class="bts-lightbox-content">
+    <button class="bts-lightbox-close" id="bts-lightbox-close" type="button">Fechar</button>
+    <div id="bts-lightbox-body"></div>
+  </div>
+</div>
+
+<!-- NEXT PROJECT -->
+<div class="next-project">
+  <div class="next-project-label">
+    <div class="np-eyebrow">Continuar explorando</div>
+    <div class="np-title">Próximo<br>Projeto →</div>
+  </div>
+  <a class="next-project-card" href="projeto.html?id=next" id="next-proj-link">
+    <div class="np-card-thumb">
+      <svg viewBox="0 0 120 68" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><defs><pattern id="nb" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="12" stroke="#1e1e1e" stroke-width="0.8"/></pattern></defs><rect width="120" height="68" fill="#141414"/><rect width="120" height="68" fill="url(#nb)"/></svg>
+    </div>
+    <div class="np-card-info">
+      <div class="np-card-cat" id="next-cat">Documentário</div>
+      <div class="np-card-title" id="next-title">SESC — Memória Viva</div>
+    </div>
+    <div class="np-arrow">→</div>
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Pedro Almeida</div>
+  <div class="footer-copy">© 2024 · Filmmaker & Coord. de Criação</div>
+</footer>
+
+<script src="works-data.js"></script>
+<script>
+
+// Get project id from URL
+const params = new URLSearchParams(window.location.search);
+const id = parseInt(params.get('id')) || 1;
+const idx = WORKS.findIndex(w => w.id === id);
+const work = WORKS[idx] || WORKS[0];
+const nextWork = WORKS[(idx + 1) % WORKS.length];
+
+function renderBtsItem(item, itemIndex) {
+  function getYoutubeThumbsFromEmbed(url) {
+    if (!url) return { primary: '', fallback: '' };
+    try {
+      const parsed = new URL(url);
+      const match = parsed.pathname.match(/\/embed\/([^/?#]+)/);
+      const videoId = match ? match[1] : '';
+      if (!videoId) return { primary: '', fallback: '' };
+      return {
+        primary: `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`,
+        fallback: `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`
+      };
+    } catch (_) {
+      return { primary: '', fallback: '' };
+    }
+  }
+
+  const type = item.type === 'video' ? 'video' : 'image';
+  const badge = item.badge || (type === 'video' ? 'Vídeo' : 'Foto');
+  const minHeightRaw = Number(item.minHeight) || 200;
+  const minHeight = Math.max(200, Math.min(minHeightRaw, 620));
+  const itemClass = `bts-item${item.wide ? ' wide' : ''}${item.tall ? ' tall' : ''}`;
+  const viewWidth = item.wide ? 600 : 300;
+  const patternSize = 12 + (itemIndex % 5) * 2;
+  const patternRotation = 30 + (itemIndex % 4) * 15;
+  const patternId = `bts-pattern-${id}-${itemIndex}`;
+  const youtubeThumbs = type === 'video' ? getYoutubeThumbsFromEmbed(item.src) : { primary: '', fallback: '' };
+  const media = item.thumb || (type === 'image' ? item.src : youtubeThumbs.primary);
+  const fallbackAttr = youtubeThumbs.fallback ? ` data-fallback="${youtubeThumbs.fallback}"` : '';
+  const mediaTag = media
+    ? `<img class="bts-media" src="${media}" alt="${item.caption || 'Bastidor'}" loading="lazy"${fallbackAttr} onerror="if(this.dataset.fallback && this.src !== this.dataset.fallback){this.src = this.dataset.fallback;}else{this.onerror=null;}">`
+    : '';
+  const safeCaption = item.caption || (type === 'video' ? 'vídeo de making of' : 'foto de bastidor');
+
+  return `
+    <div class="${itemClass}" data-type="${type}" data-src="${item.src || ''}" data-caption="${safeCaption}">
+      <div class="bts-thumb" style="min-height:${minHeight}px;">
+        ${mediaTag}
+        <svg class="bg-hatch" viewBox="0 0 ${viewWidth} ${minHeight}" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="${patternId}" width="${patternSize}" height="${patternSize}" patternUnits="userSpaceOnUse" patternTransform="rotate(${patternRotation})">
+              <line x1="0" y1="0" x2="0" y2="${patternSize}" stroke="#1d1d1d" stroke-width="0.8"/>
+            </pattern>
+          </defs>
+          <rect width="${viewWidth}" height="${minHeight}" fill="#121212"/>
+          <rect width="${viewWidth}" height="${minHeight}" fill="url(#${patternId})"/>
+        </svg>
+        <div class="bts-thumb-label">${safeCaption}</div>
+        <div class="bts-type-badge">${badge}</div>
+      </div>
+    </div>
+  `;
+}
+
+function renderBtsSection(currentWork) {
+  const section = document.getElementById('bts-section');
+  const grid = document.getElementById('bts-grid');
+  const count = document.getElementById('bts-count');
+  const label = document.getElementById('bts-label');
+  const title = document.getElementById('bts-title');
+  const bts = currentWork.bts || {};
+  const items = Array.isArray(bts.items) ? bts.items : [];
+
+  if (!items.length) {
+    section.style.display = 'none';
+    return;
+  }
+
+  section.style.display = '';
+  if (bts.label) label.textContent = bts.label;
+  if (bts.title) title.textContent = bts.title;
+  count.textContent = `${items.length} mídias`;
+  grid.innerHTML = items.map((item, i) => renderBtsItem(item, i)).join('');
+  bindBtsInteractions();
+}
+
+function openBtsLightbox(type, src, caption) {
+  const lightbox = document.getElementById('bts-lightbox');
+  const body = document.getElementById('bts-lightbox-body');
+  if (!src) return;
+
+  if (type === 'video') {
+    body.innerHTML = `
+      <iframe
+        src="${src}"
+        title="${caption || 'Vídeo de bastidores'}"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+      ></iframe>
+    `;
+  } else {
+    body.innerHTML = `<img src="${src}" alt="${caption || 'Bastidor'}">`;
+  }
+
+  lightbox.classList.add('open');
+  lightbox.setAttribute('aria-hidden', 'false');
+}
+
+function closeBtsLightbox() {
+  const lightbox = document.getElementById('bts-lightbox');
+  const body = document.getElementById('bts-lightbox-body');
+  lightbox.classList.remove('open');
+  lightbox.setAttribute('aria-hidden', 'true');
+  body.innerHTML = '';
+}
+
+function bindBtsInteractions() {
+  const lightbox = document.getElementById('bts-lightbox');
+  const closeButton = document.getElementById('bts-lightbox-close');
+  const cards = document.querySelectorAll('#bts-grid .bts-item');
+
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      openBtsLightbox(card.dataset.type, card.dataset.src, card.dataset.caption);
+    });
+  });
+
+  closeButton.onclick = closeBtsLightbox;
+  lightbox.onclick = (event) => {
+    if (event.target === lightbox) closeBtsLightbox();
+  };
+  document.onkeydown = (event) => {
+    if (event.key === 'Escape' && lightbox.classList.contains('open')) closeBtsLightbox();
+  };
+}
+
+// Set page title
+document.title = `${work.title} — Pedro Almeida`;
+
+// Render hero video
+const videoContainer = document.getElementById('project-video-player');
+if (work.videoEmbed) {
+  videoContainer.innerHTML = `
+    <iframe
+      class="project-video-frame"
+      src="${work.videoEmbed}"
+      title="${work.title}"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen
+    ></iframe>
+  `;
+} else {
+  videoContainer.innerHTML = '<div class="project-video-unavailable">Video indisponivel</div>';
+}
+
+// Render project info
+document.getElementById('project-content').innerHTML = `
+  <div>
+    <div class="project-eyebrow">${work.cat} · ${work.year}</div>
+    <h1 class="project-title">${work.title}</h1>
+    <div class="project-desc">${work.desc}</div>
+  </div>
+  <div class="project-meta">
+    <div class="meta-label">Ficha Técnica</div>
+    <div class="meta-item">
+      <div class="meta-item-key">Cliente</div>
+      <div class="meta-item-val">${work.client}</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-item-key">Função</div>
+      <div class="meta-item-val">${work.role}</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-item-key">Agência</div>
+      <div class="meta-item-val">${work.agency}</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-item-key">Ano</div>
+      <div class="meta-item-val">${work.year}</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-item-key">Categoria</div>
+      <div class="meta-item-val">${work.cat}</div>
+    </div>
+  </div>
+`;
+
+// Next project
+document.getElementById('next-title').textContent = nextWork.title;
+document.getElementById('next-cat').textContent = nextWork.cat;
+document.getElementById('next-proj-link').href = `projeto.html?id=${nextWork.id}`;
+renderBtsSection(work);
+</script>
+</body>
+</html>

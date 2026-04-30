@@ -1,0 +1,729 @@
+<!DOCTYPE html><html lang="pt-BR" style="--accent: oklch(0.72 0.09 250);"><head>
+
+
+
+
+
+
+
+
+
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pedro Almeida — Filmmaker &amp; Coord. de Criação</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #1f1f1f;
+    --surface: #111111;
+    --surface2: #161616;
+    --border: #1e1e1e;
+    --border2: #252525;
+    --text: #e8e4dc;
+    --text2: #727272;
+    --text3: #636363;
+    --accent: oklch(51.379% 0.00006 271.152);
+    --ff-head: 'Arimo', Helvetica, sans-serif;
+    --ff-body: Helvetica, Arial, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: var(--ff-body); overflow-x: hidden; }
+
+  /* ── NAV ───────────────────────────── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    height: 64px;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    transition: border-color 0.3s;
+  }
+  .nav-inner {
+    max-width: 1280px; margin: 0 auto;
+    display: flex; align-items: center; gap: 40px;
+    padding: 0 48px; height: 64px;
+  }
+  nav::before { display: none; }
+  .nav-logo {
+    font-family: var(--ff-head); font-size: 25px; font-weight: 800;
+    letter-spacing: -0.5px; color: var(--text); text-decoration: none;
+    flex-shrink: 0;
+  }
+  .nav-links { display: flex; gap: 32px; margin-left: auto; }
+  .nav-links a {
+    font-size: 13px; color: var(--text2); text-decoration: none; letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .nav-cta {
+    font-family: var(--ff-head); font-size: 12px; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    background: rgb(6, 202, 241); color: var(--bg);
+    border: none; padding: 8px 18px; cursor: pointer;
+    transition: opacity 0.2s; text-decoration: none;
+  }
+  .nav-cta:hover { opacity: 0.85; }
+
+  /* ── HERO ──────────────────────────── */
+  .hero {
+    position: relative; height: 100vh; min-height: 600px;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .hero-video-wrap {
+    position: absolute; inset: 0;
+  }
+  .hero-placeholder {
+    width: 100%; height: 100%;
+    background: #080808;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .hero-placeholder svg { opacity: 0.06; width: 100%; height: 100%; position: absolute; inset: 0; }
+  .hero-play-btn {
+    position: relative; z-index: 1;
+    width: 72px; height: 72px; border-radius: 50%;
+    border: 1.5px solid rgba(232,228,220,0.4);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: border-color 0.3s, transform 0.3s;
+    background: rgba(10,10,10,0.3); backdrop-filter: blur(4px);
+  }
+  .hero-play-btn:hover { border-color: var(--text); transform: scale(1.08); }
+  .hero-play-btn svg { margin-left: 4px; }
+
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(10,10,10,0.3) 0%, transparent 10%, rgba(10,10,10,0.7) 100%);
+  }
+  .hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 0 24px;
+  transform: translateY(20px);
+  }
+  .hero-eyebrow {
+    font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase;
+    color: rgb(6, 202, 241); margin-bottom: 10px; font-weight: 200;
+  }
+  .hero-title {
+    font-family: var(--ff-head); font-size: clamp(52px, 8vw, 110px);
+    font-weight: 800; line-height: 0.92; letter-spacing: -0.03em;
+    color: var(--text);
+  }
+  .hero-title em { font-style: normal; color: var(--accent); }
+  .hero-scroll {
+    position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+    z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 8px;
+    font-size: 10px; letter-spacing: 0.2em; color: rgb(6, 202, 241); text-transform: uppercase;
+  }
+  .hero-scroll-line {
+    width: 3px; height: 40px; background: linear-gradient(to bottom, var(--text3), transparent);
+    animation: scrollLine 1.8s ease-in-out infinite;
+  }
+  @keyframes scrollLine { 0%,100% { opacity: 0.3; transform: scaleY(0.6); } 50% { opacity: 1; transform: scaleY(1); } }
+
+  /* ── MARQUEE ───────────────────────── */
+  .marquee-wrap {
+    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    overflow: hidden; padding: 14px 0;
+  }
+  .marquee-track {
+    display: flex; gap: 0; white-space: nowrap;
+    animation: marquee 22s linear infinite;
+  }
+  .marquee-track span {
+    font-size: 11px; letter-spacing: 0.2em; color: var(--text3);
+    text-transform: uppercase; padding: 0 32px;
+  }
+  .marquee-track span.dot { color: var(--accent); padding: 0 8px; }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ── SECTION SHARED ────────────────── */
+  section { padding: 96px 48px; }
+  .section-inner { max-width: 1280px; margin: 0 auto; }
+  .section-header {
+    display: flex; align-items: baseline; justify-content: space-between;
+    margin-bottom: 48px;
+  }
+  .section-label {
+    font-size: 10px; letter-spacing: 0.22em; color: var(--text3);
+    text-transform: uppercase; margin-bottom: 8px; font-weight: 400;
+  }
+  .section-title {
+    font-family: var(--ff-head); font-size: 36px; font-weight: 700;
+    letter-spacing: -0.03em; color: var(--text);
+  }
+  .section-link {
+    font-size: 12px; color: var(--text2); text-decoration: none;
+    letter-spacing: 0.05em; border-bottom: 1px solid var(--border2);
+    padding-bottom: 2px; transition: color 0.2s, border-color 0.2s;
+  }
+  .section-link:hover { color: var(--text); border-color: var(--text2); }
+
+  /* ── WORKS GRID ────────────────────── */
+  #trabalhos { background: var(--bg); }
+  .works-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+  .work-card {
+    position: relative; overflow: hidden; cursor: pointer;
+    aspect-ratio: 16/9; background: var(--surface2);
+    text-decoration: none; display: block;
+  }
+  .work-card-thumb {
+    position: relative;
+    width: 100%; height: 100%;
+    overflow: hidden;
+    transition: transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+  }
+  .work-card:hover .work-card-thumb { transform: scale(1.04); }
+  .work-thumb-video {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    background: #111;
+    pointer-events: none;
+  }
+  .work-hatch {
+    width: 100%; height: 100%; position: relative;
+  }
+  .work-hatch-inner {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 8px;
+  }
+  .work-hatch-label {
+    font-size: 10px; letter-spacing: 0.1em; color: var(--text3);
+    text-transform: uppercase; text-align: center; padding: 0 16px;
+    font-family: 'Courier New', monospace;
+  }
+  .work-card-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 60%);
+    opacity: 0; transition: opacity 0.35s;
+    display: flex; align-items: flex-end; padding: 20px;
+  }
+  .work-card:hover .work-card-overlay { opacity: 1; }
+  .work-card-overlay-always {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 50%);
+    display: flex; align-items: flex-end; padding: 16px 18px;
+  }
+  .work-card-info { flex: 1; }
+  .work-card-cat {
+    font-size: 9px; letter-spacing: 0.18em; color: rgb(6, 202, 241);
+    text-transform: uppercase; margin-bottom: 3px;
+  }
+  .work-card-name {
+    font-family: var(--ff-head); font-size: 14px; font-weight: 700;
+    color: var(--text); line-height: 1.2;
+  }
+  .work-card-play {
+    width: 36px; height: 36px; border-radius: 50%;
+    border: 1.5px solid rgba(232,228,220,0.6);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; transition: border-color 0.2s;
+  }
+  .work-card:hover .work-card-play { border-color: var(--text); }
+
+  /* ── ABOUT ─────────────────────────── */
+  #sobre { background: var(--surface); border-top: 1px solid var(--border); }
+  .about-grid {
+    display: grid; grid-template-columns: 420px 1fr; gap: 200px;
+    align-items: start;
+  }
+  .about-photo-wrap { position: relative; }
+  .about-photo {
+    width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: center top;
+    display: block; filter: grayscale(15%);
+  }
+  .about-photo-caption {
+    margin-top: 12px; font-size: 11px; color: var(--text3);
+    letter-spacing: 0.05em;
+  }
+  .about-text { padding-top: 8px; }
+  .about-name {
+    font-family: var(--ff-head); font-size: 48px; font-weight: 800;
+    letter-spacing: -0.03em; line-height: 0.95; margin-bottom: 24px;
+  }
+  .about-name span { display: block; color: rgb(6, 202, 241); }
+  .about-body {
+    font-size: 16px; line-height: 1.75; color: #b0aca4;
+    max-width: 520px; margin-bottom: 32px;
+  }
+  .about-stats {
+    display: grid; grid-template-columns: repeat(3, auto); gap: 32px;
+    margin-bottom: 40px; width: fit-content;
+  }
+  .about-stat-n {
+    font-family: var(--ff-head); font-size: 42px; font-weight: 800;
+    letter-spacing: -0.04em; color: #ff4000; line-height: 1;
+  }
+  .about-stat-l { font-size: 11px; color: #f5f3ef; letter-spacing: 0.1em; margin-top: 4px; text-transform: uppercase; }
+  .about-socials { display: flex; gap: 16px; }
+  .about-social {
+    font-size: 12px; letter-spacing: 0.08em; color: var(--text2);
+    text-decoration: none; border: 1px solid var(--border2);
+    padding: 8px 16px; transition: all 0.2s;
+  }
+  .about-social:hover { border-color: var(--text2); color: var(--text); }
+
+  /* ── CONTACT ───────────────────────── */
+  #contato { background: var(--bg); border-top: 1px solid var(--border); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .contact-headline {
+    font-family: var(--ff-head); font-size: clamp(36px, 5vw, 64px);
+    font-weight: 800; letter-spacing: -0.04em; line-height: 0.95;
+    margin-bottom: 24px;
+  }
+  .contact-headline em { font-style: normal; color: rgb(6, 202, 241); }
+  .contact-sub { font-size: 15px; color: var(--text2); line-height: 1.6; max-width: 400px; margin-bottom: 40px; }
+  .contact-direct { font-size: 13px; color: var(--text3); letter-spacing: 0.05em; }
+  .contact-email { color: var(--text2); text-decoration: none; transition: color 0.2s; }
+  .contact-email:hover { color: var(--text); }
+  .form-group { margin-bottom: 20px; }
+  .form-group label { display: block; font-size: 10px; letter-spacing: 0.2em; color: var(--text3); text-transform: uppercase; margin-bottom: 8px; }
+  .form-group input, .form-group textarea, .form-group select {
+    width: 100%; background: var(--surface); border: 1px solid var(--border);
+    color: var(--text); font-family: var(--ff-body); font-size: 14px;
+    padding: 12px 16px; outline: none; transition: border-color 0.2s;
+    appearance: none; -webkit-appearance: none;
+  }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+    border-color: var(--text2);
+  }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .btn-submit {
+    width: 100%; background: var(--text); color: var(--bg);
+    border: none; font-family: var(--ff-head); font-size: 13px; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase; padding: 16px;
+    cursor: pointer; transition: opacity 0.2s;
+  }
+  .btn-submit:hover { opacity: 0.88; }
+
+  /* ── FOOTER ────────────────────────── */
+  footer {
+    border-top: 1px solid var(--border); padding: 28px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: var(--bg);
+  }
+  .footer-logo { font-family: var(--ff-head); font-size: 15px; font-weight: 800; color: var(--text2); }
+  .footer-copy { font-size: 11px; color: var(--text3); letter-spacing: 0.05em; }
+
+  /* ── TWEAKS PANEL ──────────────────── */
+  #tweaks-panel {
+    display: none; position: fixed; bottom: 24px; right: 24px; z-index: 999;
+    background: #1a1a1a; border: 1px solid #2a2a2a;
+    padding: 20px; width: 240px; font-family: var(--ff-body);
+  }
+  #tweaks-panel.open { display: block; }
+  .tweaks-title { font-size: 11px; letter-spacing: 0.2em; color: var(--text3); text-transform: uppercase; margin-bottom: 16px; }
+  .tweak-row { margin-bottom: 14px; }
+  .tweak-row label { display: block; font-size: 10px; color: var(--text3); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
+  .tweak-row select, .tweak-row input[type=range] { width: 100%; background: #111; border: 1px solid #2a2a2a; color: var(--text); font-size: 12px; padding: 6px 10px; appearance: none; }
+  .tweak-row input[type=range] { padding: 0; border: none; accent-color: var(--accent); }
+  .tweak-swatch-row { display: flex; gap: 6px; }
+  .tweak-swatch { width: 24px; height: 24px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; transition: border-color 0.15s; }
+  .tweak-swatch.active { border-color: var(--text); }
+  .hero-fallback {
+    position: absolute;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 24px;
+    color: var(--text2);
+    background: rgba(8, 8, 8, 0.86);
+    z-index: 1;
+  }
+  .hero-fallback.show { display: flex; }
+
+  /* ── HAMBURGER ─────────────────────────────── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 36px; height: 36px;
+    background: none; border: none; cursor: pointer;
+    padding: 4px; margin-left: auto; flex-shrink: 0;
+  }
+  .hamburger span {
+    display: block; width: 22px; height: 1.5px;
+    background: var(--text2); transition: transform 0.25s, opacity 0.2s, background 0.2s;
+  }
+  nav.nav-open .hamburger span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); background: var(--text); }
+  nav.nav-open .hamburger span:nth-child(2) { opacity: 0; }
+  nav.nav-open .hamburger span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); background: var(--text); }
+
+  /* ── RESPONSIVO ≤ 768px ─────────────────────── */
+  @media (max-width: 768px) {
+    .nav-inner { padding: 0 24px; gap: 0; }
+    .nav-links {
+      margin-left: 0;
+      display: none;
+      position: fixed; top: 64px; left: 0; right: 0;
+      flex-direction: column; align-items: stretch; gap: 0;
+      background: rgba(10,10,10,0.97); backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    nav.nav-open .nav-links { display: flex; }
+    .nav-links a {
+      padding: 18px 32px; font-size: 15px;
+      border-bottom: 1px solid var(--border); text-align: left;
+    }
+    .nav-links a:last-child { border-bottom: none; }
+    .nav-cta { display: none; }
+    .hamburger { display: flex; }
+
+    section { padding: 64px 24px; }
+    footer { padding: 20px 24px; }
+
+    .works-grid { grid-template-columns: repeat(2, 1fr); }
+
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .about-photo-wrap { display: flex; flex-direction: column; align-items: center; }
+    .about-photo { max-width: 340px; margin: 0 auto; display: block; }
+    .about-text { padding-top: 0; }
+
+    .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+  }
+
+  /* ── RESPONSIVO ≤ 480px ─────────────────────── */
+  @media (max-width: 480px) {
+    section { padding: 48px 16px; }
+    footer { padding: 20px 16px; flex-direction: column; gap: 8px; text-align: center; }
+    .works-grid { grid-template-columns: 1fr; }
+    .about-stats { gap: 20px; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#inicio">Pedro Almeida</a>
+    <div class="nav-links">
+      <a href="#trabalhos">Trabalhos</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#contato">Contato</a>
+    </div>
+    <a class="nav-cta" href="#contato">Vamos conversar</a>
+    <button class="hamburger" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<main>
+<!-- HERO -->
+<section id="inicio" class="hero" style="padding:0;">
+  <div class="hero-video-wrap">
+    <iframe id="hero-video" src="https://www.youtube.com/embed/N25WdW-kAOU?si=WxO037PJhfmYLLLL&amp;controls=0&amp;autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=N25WdW-kAOU&amp;playsinline=1&amp;rel=0&amp;modestbranding=1" title="Demoreel — Pedro Almeida" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="" style="position:absolute; top:50%; left:50%; width:177.78vh; min-width:100%; height:56.25vw; min-height:100%; transform:translate(-50%,-50%); pointer-events:none;"></iframe>
+    <div id="hero-fallback" class="hero-fallback">A visualização do vídeo foi limitada pelo navegador. Continue rolando para conhecer os trabalhos.</div>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Filmmaker • Coordenador de Criação • Projetos Técnicos </div>
+    <h1 class="hero-title">Grandes ideias,<br> impacto real.</h1>
+  </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    Role para baixo
+  </div>
+</section>
+
+
+
+<!-- TRABALHOS -->
+<section id="trabalhos">
+<div class="section-inner">
+  <div class="section-header">
+    <div>
+      <div class="section-label">Portfólio</div>
+      <h2 class="section-title">Trabalhos</h2>
+    </div>
+
+  </div>
+
+  <div class="works-grid" id="works-grid"></div>
+</div>
+</section>
+
+<!-- SOBRE -->
+<section id="sobre">
+<div class="section-inner">
+  <div class="about-grid">
+    <div class="about-photo-wrap">
+      <img class="about-photo" src="uploads/photo-1776817639137.JPEG" alt="Pedro Almeida">
+      <div class="about-photo-caption"></div>
+    </div>
+    <div class="about-text">
+      <div class="section-label" style="margin-bottom:16px;">Sobre</div>
+      <h2 class="about-name">Pedro<span>Almeida</span></h2>
+      <p class="about-body">
+        Como produtor audiovisual estratégico, dediquei minha carreira a fazer com que conteúdo funcione, não apenas seja bem-feito. Planejando operações, gerenciando orçamentos e alinhando equipes, meu foco sempre foi garantir que cada produção respondesse a um objetivo real de negócio.
+      </p>
+      <p class="about-body">
+        Acredito que cada projeto é uma oportunidade de encontrar o ângulo único que transforma uma história comum em algo memorável.
+Por isso, ao conduzir projetos do briefing à entrega final, cada decisão criativa precisa estar alinhada às métricas que importam e alinhadas aos dados e resultados do negócio.
+      </p>
+      <div class="about-stats">
+        <div>
+          <div class="about-stat-n">10+</div>
+          <div class="about-stat-l">Anos de<br>experiência</div>
+        </div>
+        <div>
+          <div class="about-stat-n">1M</div>
+          <div class="about-stat-l">Inscritos<br>Youtube</div>
+        </div>
+        <div>
+          <div class="about-stat-n">600+</div>
+          <div class="about-stat-l">Horas<br>ao vivo</div>
+        </div>
+      </div>
+      <div class="about-socials">
+        <a class="about-social" href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a class="about-social" href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a class="about-social" href="https://vimeo.com" target="_blank" rel="noopener noreferrer">Vimeo</a>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato">
+<div class="section-inner">
+  <div class="contact-grid">
+    <div>
+      <div class="section-label" style="margin-bottom:20px;">Contato</div>
+      <h2 class="contact-headline">Vamos criar<br><em>algo incrível</em><br>juntos?</h2>
+      <p class="contact-sub">Aberto a novos projetos, parcerias e colaborações. Fale sobre sua ideia e vemos como posso contribuir.</p>
+      <div class="contact-direct">
+        Direto: <a class="contact-email" href="mailto:pedro.almeidabh@gmail.com">pedro.almeidabh@gmail.com</a>
+      </div>
+    </div>
+    <form onsubmit="handleForm(event)" novalidate>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="contact-name">Nome</label>
+          <input id="contact-name" name="name" type="text" placeholder="Seu nome" required="">
+        </div>
+        <div class="form-group">
+          <label for="contact-email">E-mail</label>
+          <input id="contact-email" name="email" type="email" placeholder="seu@email.com" required="">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="contact-project-type">Tipo de projeto</label>
+        <select id="contact-project-type" name="projectType">
+          <option value="">Selecionar...</option>
+          <option>Comercial</option>
+          <option>Documentário</option>
+          <option>Branded Content</option>
+          <option>Clipe Musical</option>
+          <option>Institucional</option>
+          <option>Outro</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="contact-message">Mensagem</label>
+        <textarea id="contact-message" name="message" placeholder="Conte sobre o seu projeto..."></textarea>
+      </div>
+      <button class="btn-submit" type="submit">Enviar mensagem</button>
+    </form>
+  </div>
+</div>
+</section>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Pedro Almeida</div>
+  <div class="footer-copy">© 2026 · Filmmaker &amp; Coord. de Criação · Belo Horizonte</div>
+</footer>
+
+<!-- TWEAKS -->
+<div id="tweaks-panel">
+  <div class="tweaks-title">Tweaks</div>
+  <div class="tweak-row">
+    <label>Cor de destaque</label>
+    <div class="tweak-swatch-row">
+      <div class="tweak-swatch active" style="background: oklch(0.72 0.09 50);" onclick="setAccent('oklch(0.72 0.09 50)', this)"></div>
+      <div class="tweak-swatch" style="background: oklch(0.72 0.09 250);" onclick="setAccent('oklch(0.72 0.09 250)', this)"></div>
+      <div class="tweak-swatch" style="background: oklch(0.72 0.09 140);" onclick="setAccent('oklch(0.72 0.09 140)', this)"></div>
+      <div class="tweak-swatch" style="background: oklch(0.72 0.09 330);" onclick="setAccent('oklch(0.72 0.09 330)', this)"></div>
+      <div class="tweak-swatch" style="background: #e8e4dc;" onclick="setAccent('#e8e4dc', this)"></div>
+    </div>
+  </div>
+  <div class="tweak-row">
+    <label>Grid de trabalhos</label>
+    <select onchange="setGridCols(this.value)">
+      <option value="3">3 colunas</option>
+      <option value="2">2 colunas</option>
+      <option value="4">4 colunas</option>
+    </select>
+  </div>
+  <div class="tweak-row">
+    <label>Hero — tamanho do nome</label>
+    <input type="range" min="52" max="130" value="110" oninput="document.querySelector('.hero-title').style.fontSize = this.value + 'px'">
+  </div>
+</div>
+
+<script src="works-data.js"></script>
+<script>
+
+function hatchSVG(color) {
+  const c = encodeURIComponent('#2a2a2a');
+  return `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Cline x1='0' y1='16' x2='16' y2='0' stroke='${c}' stroke-width='0.8'/%3E%3C/svg%3E")`;
+}
+
+function buildGrid() {
+  const grid = document.getElementById('works-grid');
+  grid.innerHTML = WORKS.map(w => `
+    <a class="work-card" href="projeto.html?id=${w.id}" data-screen-label="work-${w.id}">
+      <div class="work-card-thumb">
+        ${w.thumbVideo ? `
+          <video
+            class="work-thumb-video"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            aria-label="${w.title}">
+            ${w.thumbVideoWebm ? `<source src="${w.thumbVideoWebm}" type="video/webm">` : ''}
+            <source src="${w.thumbVideo}" type="video/mp4">
+          </video>
+        ` : `
+          <div class="work-hatch" style="background: ${w.color}; background-image: ${hatchSVG(w.color)}; background-size: 16px 16px;">
+            <div class="work-hatch-inner">
+              <svg width="28" height="20" viewBox="0 0 28 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="0.5" y="0.5" width="27" height="19" rx="2.5" stroke="#2a2a2a"/>
+                <path d="M11 6l8 4-8 4V6z" fill="#252525"/>
+              </svg>
+              <div class="work-hatch-label">${w.title} · ${w.cat}<br>${w.year}</div>
+            </div>
+          </div>
+        `}
+      </div>
+      <div class="work-card-overlay-always">
+        <div class="work-card-info">
+          <div class="work-card-cat">${w.cat}</div>
+          <div class="work-card-name">${w.title}</div>
+        </div>
+      </div>
+      <div class="work-card-overlay">
+        <div class="work-card-info">
+          <div class="work-card-cat">${w.cat} · ${w.year}</div>
+          <div class="work-card-name">${w.title}</div>
+        </div>
+        <div class="work-card-play">
+          <svg width="10" height="12" viewBox="0 0 10 12" fill="none"><path d="M1 1l8 5-8 5V1z" fill="#e8e4dc"/></svg>
+        </div>
+      </div>
+    </a>
+  `).join('');
+}
+buildGrid();
+
+// ── Form ──────────────────────────────────────────────────
+function handleForm(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.btn-submit');
+  btn.textContent = 'Mensagem enviada ✓';
+  btn.style.background = 'var(--accent)';
+  btn.style.color = '#0a0a0a';
+  setTimeout(() => {
+    btn.textContent = 'Enviar mensagem';
+    btn.style.background = '';
+    btn.style.color = '';
+    e.target.reset();
+  }, 3000);
+}
+
+// ── Tweaks ────────────────────────────────────────────────
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "accent": "oklch(0.72 0.09 250)",
+  "gridCols": 2
+}/*EDITMODE-END*/;
+let tweaks = {...TWEAK_DEFAULTS};
+
+function applyTweaks() {
+  document.documentElement.style.setProperty('--accent', tweaks.accent);
+  const worksGrid = document.getElementById('works-grid');
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+  worksGrid.style.gridTemplateColumns = isMobile ? '1fr' : `repeat(${tweaks.gridCols}, 1fr)`;
+}
+applyTweaks();
+window.addEventListener('resize', applyTweaks);
+
+function setAccent(val, el) {
+  tweaks.accent = val;
+  applyTweaks();
+  document.querySelectorAll('.tweak-swatch').forEach(s => s.classList.remove('active'));
+  el.classList.add('active');
+  window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { accent: val } }, '*');
+}
+function setGridCols(val) {
+  tweaks.gridCols = parseInt(val);
+  applyTweaks();
+  window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { gridCols: tweaks.gridCols } }, '*');
+}
+
+window.addEventListener('message', e => {
+  if (e.data?.type === '__activate_edit_mode') document.getElementById('tweaks-panel').classList.add('open');
+  if (e.data?.type === '__deactivate_edit_mode') document.getElementById('tweaks-panel').classList.remove('open');
+});
+window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+
+const heroVideo = document.getElementById('hero-video');
+const heroFallback = document.getElementById('hero-fallback');
+let heroVideoLoaded = false;
+const heroTimeout = window.setTimeout(() => {
+  if (!heroVideoLoaded) heroFallback.classList.add('show');
+}, 4500);
+heroVideo.addEventListener('load', () => {
+  heroVideoLoaded = true;
+  window.clearTimeout(heroTimeout);
+  heroFallback.classList.remove('show');
+});
+
+// ── Hamburger ─────────────────────────────────────────────
+const hamburger = document.querySelector('.hamburger');
+const navEl = document.querySelector('nav');
+hamburger.addEventListener('click', () => {
+  const open = navEl.classList.toggle('nav-open');
+  hamburger.setAttribute('aria-expanded', open);
+});
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    navEl.classList.remove('nav-open');
+    hamburger.setAttribute('aria-expanded', 'false');
+  });
+});
+
+// ── Nav scroll ────────────────────────────────────────────
+window.addEventListener('scroll', () => {
+  document.querySelector('nav').style.borderBottomColor = window.scrollY > 60 ? 'var(--border)' : 'transparent';
+});
+</script>
+
+
+</body></html>
