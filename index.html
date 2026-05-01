@@ -11,9 +11,57 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pedro Almeida — Filmmaker &amp; Coord. de Criação</title>
+<title>Pedro Almeida — Filmmaker &amp; Coordenador de Criação Audiovisual</title>
+<meta name="description" content="Pedro Almeida — Filmmaker e Coordenador de Criação em Belo Horizonte. Direção, fotografia e produção audiovisual para marcas, conteúdo digital e projetos técnicos.">
+<meta name="author" content="Pedro Almeida">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#1f1f1f">
+<link rel="canonical" href="https://www.opedroalmeida.com/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Pedro Almeida">
+<meta property="og:title" content="Pedro Almeida — Filmmaker &amp; Coordenador de Criação">
+<meta property="og:description" content="Direção, fotografia e produção audiovisual para marcas, conteúdo digital e projetos técnicos.">
+<meta property="og:url" content="https://www.opedroalmeida.com/">
+<meta property="og:image" content="https://www.opedroalmeida.com/assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Pedro Almeida — Filmmaker &amp; Coordenador de Criação">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Pedro Almeida — Filmmaker &amp; Coordenador de Criação">
+<meta name="twitter:description" content="Direção, fotografia e produção audiovisual para marcas, conteúdo digital e projetos técnicos.">
+<meta name="twitter:image" content="https://www.opedroalmeida.com/assets/og-image.jpg">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.youtube.com">
 <link href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet">
+
+<!-- JSON-LD: Person -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Pedro Almeida",
+  "url": "https://www.opedroalmeida.com/",
+  "image": "https://www.opedroalmeida.com/uploads/photo-1776817639137.JPEG",
+  "jobTitle": "Filmmaker e Coordenador de Criação",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Belo Horizonte",
+    "addressRegion": "MG",
+    "addressCountry": "BR"
+  },
+  "email": "mailto:pedro.almeidabh@gmail.com",
+  "sameAs": [
+    "https://www.linkedin.com/in/pedro-hs-almeida/"
+  ]
+}
+</script>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -470,7 +518,7 @@
 <div class="section-inner">
   <div class="about-grid">
     <div class="about-photo-wrap">
-      <img class="about-photo" src="uploads/photo-1776817639137.JPEG" alt="Pedro Almeida">
+      <img class="about-photo" src="uploads/photo-1776817639137.JPEG" alt="Retrato de Pedro Almeida, filmmaker e coordenador de criação" loading="lazy" decoding="async" width="800" height="800">
       <div class="about-photo-caption"></div>
     </div>
     <div class="about-text">
@@ -520,6 +568,7 @@ Por isso, ao conduzir projetos do briefing à entrega final, cada decisão criat
       </div>
     </div>
     <form id="contact-form" onsubmit="handleForm(event)" novalidate>
+      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;">
       <div class="form-row">
         <div class="form-group">
           <label for="contact-name">Nome</label>
@@ -582,24 +631,41 @@ function hatchSVG(color) {
   return `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Cline x1='0' y1='16' x2='16' y2='0' stroke='${c}' stroke-width='0.8'/%3E%3C/svg%3E")`;
 }
 
+// Detecta condicoes para mostrar so poster (sem video)
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const saveData = navigator.connection && navigator.connection.saveData;
+const slowConn = navigator.connection && /^(slow-2g|2g)$/.test(navigator.connection.effectiveType || '');
+const STATIC_ONLY = reduceMotion || saveData || slowConn;
+
+function thumbPoster(w) {
+  // Convencao: poster .webp tem o mesmo nome base do mp4 em assets/thumbs/
+  if (!w.thumbVideo) return '';
+  return w.thumbVideo.replace(/\.(mp4|webm)$/i, '.webp');
+}
+
 function buildGrid() {
   const grid = document.getElementById('works-grid');
-  grid.innerHTML = WORKS.map(w => `
-    <a class="work-card" href="projeto.html?id=${w.id}" data-screen-label="work-${w.id}">
-      <div class="work-card-thumb">
-        ${w.thumbVideo ? `
-          <video
+  grid.innerHTML = WORKS.map(w => {
+    const poster = thumbPoster(w);
+    const posterAttr = poster ? `poster="${poster}"` : '';
+    const videoBlock = w.thumbVideo ? (
+      STATIC_ONLY && poster
+        ? `<img class="work-thumb-video" src="${poster}" alt="Prévia do projeto ${w.title}" loading="lazy" decoding="async">`
+        : `<video
             class="work-thumb-video"
-            autoplay
             muted
             loop
             playsinline
-            preload="metadata"
-            aria-label="${w.title}">
-            ${w.thumbVideoWebm ? `<source src="${w.thumbVideoWebm}" type="video/webm">` : ''}
-            <source src="${w.thumbVideo}" type="video/mp4">
-          </video>
-        ` : `
+            preload="none"
+            ${posterAttr}
+            aria-label="Prévia em vídeo do projeto ${w.title}"
+            ${w.thumbVideoWebm ? `data-src-webm="${w.thumbVideoWebm}"` : ''}
+            data-src-mp4="${w.thumbVideo}"></video>`
+    ) : '';
+    return `
+    <a class="work-card" href="projeto.html?id=${w.id}" data-screen-label="work-${w.id}" aria-label="${w.title} — ${w.cat}, ${w.year}">
+      <div class="work-card-thumb">
+        ${w.thumbVideo ? videoBlock : `
           <div class="work-hatch" style="background: ${w.color}; background-image: ${hatchSVG(w.color)}; background-size: 16px 16px;">
             <div class="work-hatch-inner">
               <svg width="28" height="20" viewBox="0 0 28 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -627,8 +693,44 @@ function buildGrid() {
         </div>
       </div>
     </a>
-  `).join('');
+  `;
+  }).join('');
+  observeThumbVideos();
 }
+
+// Lazy-load: carrega <source> do video so quando o card entra no viewport
+function observeThumbVideos() {
+  const videos = document.querySelectorAll('video.work-thumb-video[data-src-mp4]');
+  if (!videos.length) return;
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const v = entry.target;
+      if (entry.isIntersecting) {
+        if (!v.dataset.loaded) {
+          const webm = v.dataset.srcWebm;
+          const mp4 = v.dataset.srcMp4;
+          if (webm) {
+            const s = document.createElement('source');
+            s.src = webm; s.type = 'video/webm';
+            v.appendChild(s);
+          }
+          if (mp4) {
+            const s = document.createElement('source');
+            s.src = mp4; s.type = 'video/mp4';
+            v.appendChild(s);
+          }
+          v.load();
+          v.dataset.loaded = '1';
+        }
+        v.play().catch(() => {});
+      } else {
+        v.pause();
+      }
+    });
+  }, { rootMargin: '200px 0px', threshold: 0.1 });
+  videos.forEach(v => io.observe(v));
+}
+
 buildGrid();
 
 // ── Form ──────────────────────────────────────────────────
@@ -642,6 +744,13 @@ async function handleForm(e) {
   const name = form.querySelector('[name="name"]').value.trim();
   const email = form.querySelector('[name="email"]').value.trim();
   const message = form.querySelector('[name="message"]').value.trim();
+  const honeypot = form.querySelector('[name="_gotcha"]').value;
+
+  if (honeypot) {
+    btn.textContent = 'Mensagem enviada ✓';
+    form.reset();
+    return;
+  }
 
   if (!name || !email || !message) {
     btn.textContent = 'Preencha todos os campos';

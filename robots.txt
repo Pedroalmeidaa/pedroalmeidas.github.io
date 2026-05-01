@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /scraps/
+Disallow: /Wireframes.html
+
+Sitemap: https://www.opedroalmeida.com/sitemap.xml

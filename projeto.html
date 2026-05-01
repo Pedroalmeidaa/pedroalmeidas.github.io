@@ -4,6 +4,30 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Projeto — Pedro Almeida</title>
+<meta name="description" content="Projeto audiovisual no portfólio de Pedro Almeida — Filmmaker e Coordenador de Criação.">
+<meta name="author" content="Pedro Almeida">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="canonical" id="meta-canonical" href="https://www.opedroalmeida.com/projeto.html">
+
+<meta property="og:type" content="video.other">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Pedro Almeida">
+<meta property="og:title" id="meta-og-title" content="Projeto — Pedro Almeida">
+<meta property="og:description" id="meta-og-desc" content="Projeto audiovisual no portfólio de Pedro Almeida.">
+<meta property="og:url" id="meta-og-url" content="https://www.opedroalmeida.com/projeto.html">
+<meta property="og:image" id="meta-og-image" content="https://www.opedroalmeida.com/assets/og-image.jpg">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" id="meta-tw-title" content="Projeto — Pedro Almeida">
+<meta name="twitter:description" id="meta-tw-desc" content="Projeto audiovisual no portfólio de Pedro Almeida.">
+<meta name="twitter:image" id="meta-tw-image" content="https://www.opedroalmeida.com/assets/og-image.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.youtube.com">
+<link rel="preconnect" href="https://i.ytimg.com">
+<link rel="preconnect" href="https://player.vimeo.com">
 <link href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -371,7 +395,7 @@
 </div>
 <div class="bts-lightbox" id="bts-lightbox" aria-hidden="true">
   <div class="bts-lightbox-content">
-    <button class="bts-lightbox-close" id="bts-lightbox-close" type="button">Fechar</button>
+    <button class="bts-lightbox-close" id="bts-lightbox-close" type="button" aria-label="Fechar visualização">Fechar</button>
     <div id="bts-lightbox-body"></div>
   </div>
 </div>
@@ -395,7 +419,7 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">Pedro Almeida</div>
-  <div class="footer-copy">© 2024 · Filmmaker & Coord. de Criação</div>
+  <div class="footer-copy">© 2026 · Filmmaker & Coord. de Criação</div>
 </footer>
 
 <script src="works-data.js"></script>
@@ -494,6 +518,7 @@ function openBtsLightbox(type, src, caption) {
       <iframe
         src="${src}"
         title="${caption || 'Vídeo de bastidores'}"
+        loading="lazy"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         referrerpolicy="strict-origin-when-cross-origin"
         allowfullscreen
@@ -535,8 +560,54 @@ function bindBtsInteractions() {
   };
 }
 
-// Set page title
-document.title = `${work.title} — Pedro Almeida`;
+// Set page title and dynamic SEO meta
+const stripHtml = (s) => (s || '').replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+const plainDesc = stripHtml(work.desc).slice(0, 200);
+const pageUrl = `https://www.opedroalmeida.com/projeto.html?id=${work.id}`;
+const pageTitle = `${work.title} — ${work.cat} | Pedro Almeida`;
+
+document.title = pageTitle;
+
+function getYoutubeId(url) {
+  const m = (url || '').match(/\/embed\/([^/?#&]+)/);
+  return m ? m[1] : '';
+}
+const ytId = getYoutubeId(work.videoEmbed);
+const ogImage = ytId
+  ? `https://img.youtube.com/vi/${ytId}/maxresdefault.jpg`
+  : 'https://www.opedroalmeida.com/assets/og-image.jpg';
+
+const setMeta = (id, attr, value) => {
+  const el = document.getElementById(id);
+  if (el) el.setAttribute(attr, value);
+};
+setMeta('meta-canonical', 'href', pageUrl);
+setMeta('meta-og-title', 'content', pageTitle);
+setMeta('meta-og-desc', 'content', plainDesc);
+setMeta('meta-og-url', 'content', pageUrl);
+setMeta('meta-og-image', 'content', ogImage);
+setMeta('meta-tw-title', 'content', pageTitle);
+setMeta('meta-tw-desc', 'content', plainDesc);
+setMeta('meta-tw-image', 'content', ogImage);
+const descMeta = document.querySelector('meta[name="description"]');
+if (descMeta) descMeta.setAttribute('content', plainDesc);
+
+// JSON-LD VideoObject
+const jsonLd = document.createElement('script');
+jsonLd.type = 'application/ld+json';
+jsonLd.textContent = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'VideoObject',
+  name: work.title,
+  description: plainDesc,
+  thumbnailUrl: ogImage,
+  uploadDate: `${work.year}-01-01`,
+  embedUrl: work.videoEmbed,
+  author: { '@type': 'Person', name: 'Pedro Almeida', url: 'https://www.opedroalmeida.com/' },
+  productionCompany: work.agency ? { '@type': 'Organization', name: work.agency } : undefined,
+  about: work.client
+});
+document.head.appendChild(jsonLd);
 
 // Render hero video
 const videoContainer = document.getElementById('project-video-player');
@@ -545,7 +616,8 @@ if (work.videoEmbed) {
     <iframe
       class="project-video-frame"
       src="${work.videoEmbed}"
-      title="${work.title}"
+      title="${work.title} — vídeo do projeto"
+      loading="lazy"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       referrerpolicy="strict-origin-when-cross-origin"
       allowfullscreen
@@ -593,12 +665,39 @@ document.getElementById('next-cat').textContent = nextWork.cat;
 document.getElementById('next-proj-link').href = `projeto.html?id=${nextWork.id}`;
 
 const nextThumb = document.getElementById('next-thumb');
-if (nextWork.thumbVideo) {
+const nextPoster = nextWork.thumbVideo ? nextWork.thumbVideo.replace(/\.(mp4|webm)$/i, '.webp') : '';
+const nextReduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const nextSaveData = navigator.connection && navigator.connection.saveData;
+const nextStaticOnly = nextReduceMotion || nextSaveData;
+
+if (nextWork.thumbVideo && nextStaticOnly && nextPoster) {
+  nextThumb.innerHTML = `<img src="${nextPoster}" alt="Prévia do próximo projeto: ${nextWork.title}" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block;">`;
+} else if (nextWork.thumbVideo) {
   nextThumb.innerHTML = `
-    <video style="width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;" autoplay muted loop playsinline preload="metadata" aria-label="${nextWork.title}">
-      ${nextWork.thumbVideoWebm ? `<source src="${nextWork.thumbVideoWebm}" type="video/webm">` : ''}
-      <source src="${nextWork.thumbVideo}" type="video/mp4">
-    </video>`;
+    <video id="next-thumb-video" style="width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;" muted loop playsinline preload="none" ${nextPoster ? `poster="${nextPoster}"` : ''} aria-label="Prévia do próximo projeto: ${nextWork.title}"></video>`;
+  const nv = document.getElementById('next-thumb-video');
+  const nio = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        if (!nv.dataset.loaded) {
+          if (nextWork.thumbVideoWebm) {
+            const s = document.createElement('source');
+            s.src = nextWork.thumbVideoWebm; s.type = 'video/webm';
+            nv.appendChild(s);
+          }
+          const s2 = document.createElement('source');
+          s2.src = nextWork.thumbVideo; s2.type = 'video/mp4';
+          nv.appendChild(s2);
+          nv.load();
+          nv.dataset.loaded = '1';
+        }
+        nv.play().catch(() => {});
+      } else {
+        nv.pause();
+      }
+    });
+  }, { rootMargin: '200px 0px', threshold: 0.1 });
+  nio.observe(nv);
 } else {
   nextThumb.innerHTML = `<svg viewBox="0 0 120 68" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><defs><pattern id="nb" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="12" stroke="#1e1e1e" stroke-width="0.8"/></pattern></defs><rect width="120" height="68" fill="${nextWork.color || '#141414'}"/><rect width="120" height="68" fill="url(#nb)"/></svg>`;
 }
