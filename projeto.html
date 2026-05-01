@@ -383,9 +383,7 @@
     <div class="np-title">Próximo<br>Projeto →</div>
   </div>
   <a class="next-project-card" href="projeto.html?id=next" id="next-proj-link">
-    <div class="np-card-thumb">
-      <svg viewBox="0 0 120 68" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><defs><pattern id="nb" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="12" stroke="#1e1e1e" stroke-width="0.8"/></pattern></defs><rect width="120" height="68" fill="#141414"/><rect width="120" height="68" fill="url(#nb)"/></svg>
-    </div>
+    <div class="np-card-thumb" id="next-thumb"></div>
     <div class="np-card-info">
       <div class="np-card-cat" id="next-cat">Documentário</div>
       <div class="np-card-title" id="next-title">SESC — Memória Viva</div>
@@ -593,6 +591,18 @@ document.getElementById('project-content').innerHTML = `
 document.getElementById('next-title').textContent = nextWork.title;
 document.getElementById('next-cat').textContent = nextWork.cat;
 document.getElementById('next-proj-link').href = `projeto.html?id=${nextWork.id}`;
+
+const nextThumb = document.getElementById('next-thumb');
+if (nextWork.thumbVideo) {
+  nextThumb.innerHTML = `
+    <video style="width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;" autoplay muted loop playsinline preload="metadata" aria-label="${nextWork.title}">
+      ${nextWork.thumbVideoWebm ? `<source src="${nextWork.thumbVideoWebm}" type="video/webm">` : ''}
+      <source src="${nextWork.thumbVideo}" type="video/mp4">
+    </video>`;
+} else {
+  nextThumb.innerHTML = `<svg viewBox="0 0 120 68" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"><defs><pattern id="nb" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="12" stroke="#1e1e1e" stroke-width="0.8"/></pattern></defs><rect width="120" height="68" fill="${nextWork.color || '#141414'}"/><rect width="120" height="68" fill="url(#nb)"/></svg>`;
+}
+
 renderBtsSection(work);
 </script>
 </body>

@@ -499,8 +499,8 @@ Por isso, ao conduzir projetos do briefing à entrega final, cada decisão criat
       </div>
       <div class="about-socials">
         <a class="about-social" href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
-        <a class="about-social" href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        <a class="about-social" href="https://vimeo.com" target="_blank" rel="noopener noreferrer">Vimeo</a>
+        <a class="about-social" href="https://www.linkedin.com/in/pedro-hs-almeida/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        
       </div>
     </div>
   </div>
@@ -519,7 +519,7 @@ Por isso, ao conduzir projetos do briefing à entrega final, cada decisão criat
         Direto: <a class="contact-email" href="mailto:pedro.almeidabh@gmail.com">pedro.almeidabh@gmail.com</a>
       </div>
     </div>
-    <form onsubmit="handleForm(event)" novalidate>
+    <form id="contact-form" onsubmit="handleForm(event)" novalidate>
       <div class="form-row">
         <div class="form-group">
           <label for="contact-name">Nome</label>
@@ -529,18 +529,6 @@ Por isso, ao conduzir projetos do briefing à entrega final, cada decisão criat
           <label for="contact-email">E-mail</label>
           <input id="contact-email" name="email" type="email" placeholder="seu@email.com" required="">
         </div>
-      </div>
-      <div class="form-group">
-        <label for="contact-project-type">Tipo de projeto</label>
-        <select id="contact-project-type" name="projectType">
-          <option value="">Selecionar...</option>
-          <option>Comercial</option>
-          <option>Documentário</option>
-          <option>Branded Content</option>
-          <option>Clipe Musical</option>
-          <option>Institucional</option>
-          <option>Outro</option>
-        </select>
       </div>
       <div class="form-group">
         <label for="contact-message">Mensagem</label>
@@ -644,18 +632,50 @@ function buildGrid() {
 buildGrid();
 
 // ── Form ──────────────────────────────────────────────────
-function handleForm(e) {
+// Substitua FORMSPREE_ENDPOINT pela URL gerada em formspree.io/f/XXXXXXXX
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mzdobjye';
+
+async function handleForm(e) {
   e.preventDefault();
-  const btn = e.target.querySelector('.btn-submit');
-  btn.textContent = 'Mensagem enviada ✓';
-  btn.style.background = 'var(--accent)';
-  btn.style.color = '#0a0a0a';
-  setTimeout(() => {
-    btn.textContent = 'Enviar mensagem';
-    btn.style.background = '';
-    btn.style.color = '';
-    e.target.reset();
-  }, 3000);
+  const form = e.target;
+  const btn = form.querySelector('.btn-submit');
+  const name = form.querySelector('[name="name"]').value.trim();
+  const email = form.querySelector('[name="email"]').value.trim();
+  const message = form.querySelector('[name="message"]').value.trim();
+
+  if (!name || !email || !message) {
+    btn.textContent = 'Preencha todos os campos';
+    btn.style.background = '#c0392b';
+    btn.style.color = '#fff';
+    setTimeout(() => { btn.textContent = 'Enviar mensagem'; btn.style.background = ''; btn.style.color = ''; }, 2500);
+    return;
+  }
+
+  btn.textContent = 'Enviando...';
+  btn.disabled = true;
+
+  try {
+    const res = await fetch(FORMSPREE_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, message })
+    });
+
+    if (res.ok) {
+      btn.textContent = 'Mensagem enviada ✓';
+      btn.style.background = 'var(--accent)';
+      btn.style.color = '#0a0a0a';
+      form.reset();
+      setTimeout(() => { btn.textContent = 'Enviar mensagem'; btn.style.background = ''; btn.style.color = ''; btn.disabled = false; }, 3500);
+    } else {
+      throw new Error();
+    }
+  } catch {
+    btn.textContent = 'Erro ao enviar. Tente novamente.';
+    btn.style.background = '#c0392b';
+    btn.style.color = '#fff';
+    setTimeout(() => { btn.textContent = 'Enviar mensagem'; btn.style.background = ''; btn.style.color = ''; btn.disabled = false; }, 3000);
+  }
 }
 
 // ── Tweaks ────────────────────────────────────────────────

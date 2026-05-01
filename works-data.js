@@ -58,14 +58,12 @@ window.WORKS = [
     videoEmbed: 'https://player.vimeo.com/video/1187839125',
     thumbVideo: 'assets/thumbs/hotmart-guiche33.mp4',
     thumbVideoWebm: 'assets/thumbs/havaianas-summer.webm',
-    desc: '<p>Série de branded content para a coleção verão das Havaianas, celebrando a diversidade e a alegria do verão brasileiro. Coordenação completa da criação, desde o desenvolvimento do conceito até a entrega final em múltiplos formatos para redes sociais e TV.</p>',
+    desc: '<p>Filme publicitário para a Hotmart que traduz, no mundo físico, os desafios enfrentados por criadores de conteúdo digital quando dependem de múltiplos parceiros desalinhados. Uma metáfora visual sobre o caos de fazer tudo separado e a virada quando a estrutura é única e integrada.</p>',
     bts: {
       label: 'Making of',
       title: 'Bastidores',
       items: [
-        { type: 'image', src: 'assets/bts/3/set-praia.jpg', caption: 'set · praia', wide: true, minHeight: 220 },
-        { type: 'video', src: 'https://www.youtube.com/embed/ysz5S6PUM-U?autoplay=0&rel=0', caption: 'making of · set', minHeight: 220 },
-        { type: 'image', src: 'assets/bts/3/producao-cast.jpg', caption: 'produção · casting', minHeight: 200 }
+        
       ]
     }
   },
@@ -81,14 +79,12 @@ window.WORKS = [
     videoEmbed: 'https://www.youtube.com/embed/q-lmDsRUlk4?autoplay=1&rel=0',
     thumbVideo: 'assets/thumbs/hotmart-cast-manu-gavassi.mp4',
     thumbVideoWebm: 'assets/thumbs/ana-frango-eletrico.webm',
-    desc: '<p>Videoclipe para a artista Ana Frango Elétrico, referência da nova MPB brasileira. Um trabalho de pesquisa visual intensa, com referências no cinema experimental dos anos 70 e na estética lo-fi contemporânea.</p>',
+    desc: '<p>Episódio do Hotmart Cast com a artista e criadora de conteúdo Manu Gavassi, a conversa atravessa temas como o equilíbrio entre intuição criativa e planejamento estratégico, a virada de chave provocada pela participação no Big Brother Brasil durante a pandemia, a maturação de carreira e os limites saudáveis da exposição em redes sociais. Discute também como restrições viram combustível criativo caso da fotonovela criada quando não havia recursos para um clipe e o impacto da inteligência artificial na criação de conteúdo.</p><p>Como coordenador de produção, atuei na articulação entre as equipes envolvidas, no planejamento e cumprimento do cronograma, na gestão de logística, locação e demandas técnicas, garantindo que todas as áreas operassem de forma integrada para entregar um episódio com o padrão editorial e de imagem do Hotmart Cast.</p>',
     bts: {
       label: 'Making of',
       title: 'Bastidores',
       items: [
-        { type: 'image', src: 'assets/bts/4/luz-palco.jpg', caption: 'luz · palco', wide: true, minHeight: 220 },
-        { type: 'video', src: 'https://www.youtube.com/embed/jNQXAC9IVRw?autoplay=0&rel=0', caption: 'ensaio · making of', minHeight: 220 },
-        { type: 'image', src: 'assets/bts/4/camera-mao.jpg', caption: 'câmera · handheld', minHeight: 200 }
+        
       ]
     }
   },
@@ -134,46 +130,44 @@ window.WORKS = [
   {
     id: 7,
     title: 'Canal da Hotmart no Youtube',
-    cat: 'Anúncios',
+    cat: 'Produção de conteúdo',
     year: '2025',
     client: 'Youtube Hotmart',
     role: 'Direção e pós-produção',
     agency: 'Time interno Hotmart',
     color: '#0d140f',
-    videoEmbed: 'https://www.youtube.com/embed/M7lc1UVf-VE?autoplay=1&rel=0',
-    thumbVideo: 'assets/thumbs/itau-conexoes.mp4',
+    videoEmbed: 'https://www.youtube.com/embed/xcInFGICfXw?si=SzpEi7yGZ9jz0Ni3&autoplay=1&rel=0',
+    thumbVideo: 'assets/thumbs/Canal-Youtube-Hotmart-Demo-Reel-thumb.mp4',
     thumbVideoWebm: 'assets/thumbs/itau-conexoes.webm',
     desc: '<p>Campanha institucional do Itaú celebrando 10 anos do programa Itaú Social. Uma série de micro-documentários sobre histórias reais de transformação através da educação e do empreendedorismo.</p>',
     bts: {
       label: 'Making of',
       title: 'Bastidores',
-      items: [
-        { type: 'image', src: 'assets/bts/5/equipe-campo.jpg', caption: 'equipe · campo', wide: true, minHeight: 220 },
-        { type: 'video', src: 'https://www.youtube.com/embed/M7lc1UVf-VE?autoplay=0&rel=0', caption: 'depoimentos · bastidor', minHeight: 220 },
-        { type: 'image', src: 'assets/bts/5/set-entrevista.jpg', caption: 'set · entrevista', minHeight: 200 }
-      ]
+      items: []
     }
   },
   {
     id: 8,
-    title: 'Natura — Origens',
-    cat: 'Branded Content',
-    year: '2024',
-    client: 'Natura',
-    role: 'Coord. de Criação',
-    agency: 'Porta',
+    title: 'Hotmart Academy - Aprenda com Experts',
+    cat: 'Conteúdo educacional',
+    year: '2023',
+    client: 'Hotmart',
+    role: 'Coordenador de produção e Direção',
+    agency: 'Time interno Hotmart',
     color: '#0d1410',
-    videoEmbed: 'https://www.youtube.com/embed/aqz-KE-bpKQ?autoplay=1&rel=0',
-    thumbVideo: 'assets/thumbs/natura-origens.mp4',
+    videoEmbed: 'https://www.youtube.com/embed/liYEbdR0yGk?autoplay=1&rel=0',
+    thumbVideo: 'assets/thumbs/academy-ace.mp4',
     thumbVideoWebm: 'assets/thumbs/natura-origens.webm',
-    desc: '<p>Série documental sobre as origens dos ingredientes da linha Ekos da Natura, percorrendo comunidades da Amazônia e do Cerrado. Um projeto que conecta sustentabilidade, cultura e beleza de forma genuína.</p>',
+    desc: '<p>Com um time de professores formado por Victor Damásio, Micha Menezes, André Cia, Gislene Isquierdo, Barbara Bruna, Valeska Bruzzi, Cadu Neiva, Gabi Salles, Pedro Sobral, Aloísio Júnior, Priscila Zillo, Rejane Toigo e Geronimo Theml, você vai aprender a criar um produto do zero e ainda terá acesso a técnicas avançadas de posicionamento de mercado, tráfego pago, copywriting e crescimento em redes sociais.</p>',
     bts: {
       label: 'Making of',
       title: 'Bastidores',
       items: [
-        { type: 'image', src: 'assets/bts/8/floresta-set.jpg', caption: 'floresta · set', wide: true, minHeight: 220 },
-        { type: 'video', src: 'https://www.youtube.com/embed/aqz-KE-bpKQ?autoplay=0&rel=0', caption: 'making of · campo', minHeight: 220 },
-        { type: 'image', src: 'assets/bts/8/equipe-rio.jpg', caption: 'equipe · rio', minHeight: 200 }
+        { type: 'image', src: 'assets/bts/8/hotmart-academy-bts1.jpg', caption: 'floresta · set', wide: false, minHeight: 500 },
+        { type: 'image', src: 'assets/bts/8/hotmart-academy-bts3.jpeg', caption: 'floresta · set', wide: false, minHeight: 500 },
+        
+        { type: 'image', src: 'assets/bts/8/hotmart-academy-bts2.jpeg', caption: 'equipe · rio', minHeight: 500 }
+        
       ]
     }
   }
