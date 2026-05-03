@@ -3,7 +3,14 @@
     "allow": [
       "Bash(git add *)",
       "Bash(git commit *)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(sed 's/.*\\\\.//')",
+      "Bash(git -C \"c:\\\\Users\\\\pedro\\\\OneDrive\\\\Desktop\\\\Site pedro almeida\" config user.name)",
+      "Bash(git -C \"c:\\\\Users\\\\pedro\\\\OneDrive\\\\Desktop\\\\Site pedro almeida\" config user.email)",
+      "Bash(git -C \"c:\\\\Users\\\\pedro\\\\OneDrive\\\\Desktop\\\\Site pedro almeida\" remote -v)",
+      "Bash(xargs ls *)",
+      "Bash(awk '{print $5, $9}')",
+      "Bash(du -sh \"c:/Users/pedro/OneDrive/Desktop/Site pedro almeida/assets/\"/*)"
     ]
   }
 }

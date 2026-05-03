@@ -139,7 +139,7 @@ window.WORKS = [
     videoEmbed: 'https://www.youtube.com/embed/xcInFGICfXw?si=SzpEi7yGZ9jz0Ni3&autoplay=1&rel=0',
     thumbVideo: 'assets/thumbs/Canal-Youtube-Hotmart-Demo-Reel-thumb.mp4',
     thumbVideoWebm: 'assets/thumbs/itau-conexoes.webm',
-    desc: '<p>Campanha institucional do Itaú celebrando 10 anos do programa Itaú Social. Uma série de micro-documentários sobre histórias reais de transformação através da educação e do empreendedorismo.</p>',
+    desc: '<p>Direção e pós-produção do canal oficial da Hotmart no YouTube em 2025, ano em que o canal atingiu o marco histórico de 1 milhão de inscritos. O trabalho resultou em superação de 100% dos indicadores acompanhados em relação a 2024, com destaque para o crescimento de 785% em novos inscritos, 166% em watchtime — totalizando 478 mil horas assistidas — e 133% em volume de comentários. O ano fechou com a estreia da nova editoria Só Se Fala Nisso, cujo MVP ultrapassou 50 mil views orgânicas e 5 mil horas assistidas em menos de 10 dias.</p>',
     bts: {
       label: 'Making of',
       title: 'Bastidores',
