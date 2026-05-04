@@ -10,7 +10,9 @@
       "Bash(git -C \"c:\\\\Users\\\\pedro\\\\OneDrive\\\\Desktop\\\\Site pedro almeida\" remote -v)",
       "Bash(xargs ls *)",
       "Bash(awk '{print $5, $9}')",
-      "Bash(du -sh \"c:/Users/pedro/OneDrive/Desktop/Site pedro almeida/assets/\"/*)"
+      "Bash(du -sh \"c:/Users/pedro/OneDrive/Desktop/Site pedro almeida/assets/\"/*)",
+      "Bash(git update-index *)",
+      "Bash(Select-Object -First 50)"
     ]
   }
 }
