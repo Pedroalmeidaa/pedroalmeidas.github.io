@@ -33,19 +33,21 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg: #0a0a0a;
-    --surface: #111111;
-    --surface2: #161616;
-    --border: #1e1e1e;
-    --border2: #252525;
-    --text: #e8e4dc;
-    --text2: #888;
-    --text3: #444;
-    --accent: rgb(6, 202, 241);
+    --bg: #0E0E0F;
+    --surface: #161618;
+    --surface2: #1C1C1F;
+    --border: #232327;
+    --border2: #2C2C31;
+    --text: #F2EFE8;
+    --text2: #8A8A90;
+    --text3: #5C5C62;
+    --accent: #2ebdff;
+    --accent2: #E8FF5B;
     --ff-head: 'Arimo', Helvetica, sans-serif;
-    --ff-body: Helvetica, Arial, sans-serif;
-    --content-max: 1200px;
+    --ff-body: 'Arimo', Helvetica, Arial, sans-serif;
+    --content-max: 1280px;
   }
+  ::selection { background: var(--accent); color: #0a0a0a; }
 
   html { scroll-behavior: smooth; }
   body { background: var(--bg); color: var(--text); font-family: var(--ff-body); overflow-x: hidden; }
