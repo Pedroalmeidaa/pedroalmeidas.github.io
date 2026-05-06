@@ -1,6 +1,26 @@
 window.WORKS = [
   {
     id: 1,
+    title: 'Canal da Hotmart no Youtube',
+    cat: 'Produção de conteúdo',
+    year: '2025',
+    client: 'Youtube Hotmart',
+    role: 'Direção e pós-produção',
+    agency: 'Time interno Hotmart',
+    color: '#0d140f',
+    metric: '1M+ inscritos no canal',
+    videoEmbed: 'https://www.youtube.com/embed/xcInFGICfXw?si=SzpEi7yGZ9jz0Ni3&autoplay=1&rel=0',
+    thumbVideo: 'assets/thumbs/Canal-Youtube-Hotmart-Demo-Reel-thumb.mp4',
+    thumbVideoWebm: 'assets/thumbs/itau-conexoes.webm',
+    desc: '<p>Direção criativa do canal oficial da Hotmart no YouTube em 2025, ano em que o canal atingiu 1 milhão de inscritos. Conduzi a operação criativa em parceria com a coordenação de conteúdo, com superação de 100% dos indicadores em relação a 2024, com destaque para crescimento de 785% em novos inscritos, 166% em watchtime totalizando 478 mil horas assistidas, e 133% em volume de comentários. Conduzi a aplicação criativa do rebranding da Hotmart no canal em parceria com o time de branding, definindo o sistema visual das telas de editorias com a nova tipografia proprietária da marca, padrões de cor, variações tipográficas e estilo de inserções gráficas, em colaboração com a designer do squad.</p>',
+    bts: {
+      label: 'Making of',
+      title: 'Bastidores',
+      items: []
+    }
+  },
+  {
+    id: 2,
     title: 'Hotmart Bravo - Juan David',
     cat: 'Conteúdo de marca',
     year: '2023',
@@ -25,7 +45,7 @@ window.WORKS = [
     }
   },
   {
-    id: 2,
+    id: 3,
     title: 'Hotmart Bravo - Mike Munzvil',
     cat: 'Conteúdo de marca',
     year: '2023',
@@ -49,7 +69,7 @@ window.WORKS = [
     }
   },
   {
-    id: 3,
+    id: 4,
     title: 'Hotmart - Guiche 33',
     cat: 'Conteúdo de marca',
     year: '2023',
@@ -66,12 +86,12 @@ window.WORKS = [
       label: 'Making of',
       title: 'Bastidores',
       items: [
-        
+
       ]
     }
   },
   {
-    id: 4,
+    id: 5,
     title: 'Hotmart Cast - Manu Gavassi',
     cat: 'Produção de conteúdo',
     year: '2026',
@@ -88,12 +108,12 @@ window.WORKS = [
       label: 'Making of',
       title: 'Bastidores',
       items: [
-        
+
       ]
     }
   },
   {
-    id: 5,
+    id: 6,
     title: 'Curso de Marketing no Youtube da Hotmart',
     cat: 'Produção de conteúdo',
     year: '2025',
@@ -106,10 +126,10 @@ window.WORKS = [
     thumbVideo: 'assets/thumbs/curso-marketing-hotmart.mp4',
     thumbVideoWebm: 'assets/thumbs/curso-marketing-hotmart.webm',
     desc: '<p>Produção audiovisual completa do curso gratuito de marketing digital da Hotmart, um dos maiores players do mercado de produtos digitais na América Latina. Atuei como principal responsável audiovisual em todas as etapas do projeto da direção e captação até a pós-produção, garantindo uma identidade visual coesa e uma experiência de assistência fluida ao longo de mais de nove horas de conteúdo.</p><p>O vídeo foi destaque em todos os principais indicadores, sendo, inclusive, o conteúdo que mais atraiu novos inscritos para o canal ao longo de 2025, além de ter conquistado mais de 400k visualizações e quase 60k horas assistidas.</p>',
-    
+
   },
   {
-    id: 6,
+    id: 7,
     title: 'Estúdio Hotmart Cast no FIRE',
     cat: 'Coordenação Técnica e Projeto',
     year: '2025',
@@ -134,26 +154,6 @@ window.WORKS = [
     }
   },
   {
-    id: 7,
-    title: 'Canal da Hotmart no Youtube',
-    cat: 'Produção de conteúdo',
-    year: '2025',
-    client: 'Youtube Hotmart',
-    role: 'Direção e pós-produção',
-    agency: 'Time interno Hotmart',
-    color: '#0d140f',
-    metric: '1M+ inscritos no canal',
-    videoEmbed: 'https://www.youtube.com/embed/xcInFGICfXw?si=SzpEi7yGZ9jz0Ni3&autoplay=1&rel=0',
-    thumbVideo: 'assets/thumbs/Canal-Youtube-Hotmart-Demo-Reel-thumb.mp4',
-    thumbVideoWebm: 'assets/thumbs/itau-conexoes.webm',
-    desc: '<p>Direção criativa do canal oficial da Hotmart no YouTube em 2025, ano em que o canal atingiu 1 milhão de inscritos. Conduzi a operação criativa em parceria com a coordenação de conteúdo, com superação de 100% dos indicadores em relação a 2024, com destaque para crescimento de 785% em novos inscritos, 166% em watchtime totalizando 478 mil horas assistidas, e 133% em volume de comentários. Conduzi a aplicação criativa do rebranding da Hotmart no canal em parceria com o time de branding, definindo o sistema visual das telas de editorias com a nova tipografia proprietária da marca, padrões de cor, variações tipográficas e estilo de inserções gráficas, em colaboração com a designer do squad.</p>',
-    bts: {
-      label: 'Making of',
-      title: 'Bastidores',
-      items: []
-    }
-  },
-  {
     id: 8,
     title: 'Hotmart Academy - Aprenda com Experts',
     cat: 'Conteúdo educacional',
@@ -173,9 +173,9 @@ window.WORKS = [
       items: [
         { type: 'image', src: 'assets/bts/8/hotmart-academy-bts1.jpg', caption: 'floresta · set', wide: false, minHeight: 500 },
         { type: 'image', src: 'assets/bts/8/hotmart-academy-bts3.jpeg', caption: 'floresta · set', wide: false, minHeight: 500 },
-        
+
         { type: 'image', src: 'assets/bts/8/hotmart-academy-bts2.jpeg', caption: 'equipe · rio', minHeight: 500 }
-        
+
       ]
     }
   }
