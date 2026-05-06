@@ -21,6 +21,32 @@ window.WORKS = [
   },
   {
     id: 2,
+    title: 'Hotmart Academy - Aprenda com Experts',
+    cat: 'Conteúdo educacional',
+    year: '2023',
+    client: 'Hotmart',
+    role: 'Estrutura editorial e Coordenador de produção',
+    agency: 'Time interno Hotmart',
+    color: '#0d1410',
+    metric: '13 experts · curso de referência',
+    videoEmbed: 'https://www.youtube.com/embed/liYEbdR0yGk?autoplay=1&rel=0',
+    thumbVideo: 'assets/thumbs/academy-ace.mp4',
+    thumbVideoWebm: 'assets/thumbs/natura-origens.webm',
+    desc: '<p>Liderança criativa do Hotmart Academy, hub educacional para creators iniciantes na plataforma. Conduzi a concepção criativa 360º do produto, dirigindo squad multidisciplinar composto por PMO, copywriter e designer, além de fornecedores externos de edição, motion e captação. Defini o conceito criativo, a linguagem audiovisual e, em parceria com a designer, a estrutura visual das landing pages, layouts de apresentação e thumbnails, garantindo aplicação consistente do brand book da Hotmart e elevando o padrão estético das entregas. O hub gerou impacto direto em métricas de negócio, com alunos vendendo até 2.6 vezes mais rápido, 3x mais produtos aprovados e 4.6x mais produtos criados em relação a usuários que não passaram pela jornada.</p>',
+    bts: {
+      label: 'Making of',
+      title: 'Bastidores',
+      items: [
+        { type: 'image', src: 'assets/bts/8/hotmart-academy-bts1.jpg', caption: 'floresta · set', wide: false, minHeight: 500 },
+        { type: 'image', src: 'assets/bts/8/hotmart-academy-bts3.jpeg', caption: 'floresta · set', wide: false, minHeight: 500 },
+
+        { type: 'image', src: 'assets/bts/8/hotmart-academy-bts2.jpeg', caption: 'equipe · rio', minHeight: 500 }
+
+      ]
+    }
+  },
+  {
+    id: 3,
     title: 'Hotmart Bravo - Juan David',
     cat: 'Conteúdo de marca',
     year: '2023',
@@ -45,7 +71,7 @@ window.WORKS = [
     }
   },
   {
-    id: 3,
+    id: 4,
     title: 'Hotmart Bravo - Mike Munzvil',
     cat: 'Conteúdo de marca',
     year: '2023',
@@ -69,7 +95,7 @@ window.WORKS = [
     }
   },
   {
-    id: 4,
+    id: 5,
     title: 'Hotmart - Guiche 33',
     cat: 'Conteúdo de marca',
     year: '2023',
@@ -91,7 +117,7 @@ window.WORKS = [
     }
   },
   {
-    id: 5,
+    id: 6,
     title: 'Hotmart Cast - Manu Gavassi',
     cat: 'Produção de conteúdo',
     year: '2026',
@@ -113,7 +139,7 @@ window.WORKS = [
     }
   },
   {
-    id: 6,
+    id: 7,
     title: 'Curso de Marketing no Youtube da Hotmart',
     cat: 'Produção de conteúdo',
     year: '2025',
@@ -129,7 +155,7 @@ window.WORKS = [
 
   },
   {
-    id: 7,
+    id: 8,
     title: 'Estúdio Hotmart Cast no FIRE',
     cat: 'Coordenação Técnica e Projeto',
     year: '2025',
@@ -150,32 +176,6 @@ window.WORKS = [
         { type: 'image', src: 'assets/bts/6/hotmart-cast-fire-festival-2.jpeg', caption: 'making of · comunidade', minHeight: 440 },
         { type: 'image', src: 'assets/bts/6/hotmart-cast-fire-festival-equipe.jpeg', caption: 'equipe · local', minHeight: 440 },
         { type: 'image', src: 'assets/bts/6/hotmart-cast-fire-festival- (2).jpeg', caption: 'equipe · local', wide: true, minHeight: 520 }
-      ]
-    }
-  },
-  {
-    id: 8,
-    title: 'Hotmart Academy - Aprenda com Experts',
-    cat: 'Conteúdo educacional',
-    year: '2023',
-    client: 'Hotmart',
-    role: 'Estrutura editorial e Coordenador de produção',
-    agency: 'Time interno Hotmart',
-    color: '#0d1410',
-    metric: '13 experts · curso de referência',
-    videoEmbed: 'https://www.youtube.com/embed/liYEbdR0yGk?autoplay=1&rel=0',
-    thumbVideo: 'assets/thumbs/academy-ace.mp4',
-    thumbVideoWebm: 'assets/thumbs/natura-origens.webm',
-    desc: '<p>Liderança criativa do Hotmart Academy, hub educacional para creators iniciantes na plataforma. Conduzi a concepção criativa 360º do produto, dirigindo squad multidisciplinar composto por PMO, copywriter e designer, além de fornecedores externos de edição, motion e captação. Defini o conceito criativo, a linguagem audiovisual e, em parceria com a designer, a estrutura visual das landing pages, layouts de apresentação e thumbnails, garantindo aplicação consistente do brand book da Hotmart e elevando o padrão estético das entregas. O hub gerou impacto direto em métricas de negócio, com alunos vendendo até 2.6 vezes mais rápido, 3x mais produtos aprovados e 4.6x mais produtos criados em relação a usuários que não passaram pela jornada.</p>',
-    bts: {
-      label: 'Making of',
-      title: 'Bastidores',
-      items: [
-        { type: 'image', src: 'assets/bts/8/hotmart-academy-bts1.jpg', caption: 'floresta · set', wide: false, minHeight: 500 },
-        { type: 'image', src: 'assets/bts/8/hotmart-academy-bts3.jpeg', caption: 'floresta · set', wide: false, minHeight: 500 },
-
-        { type: 'image', src: 'assets/bts/8/hotmart-academy-bts2.jpeg', caption: 'equipe · rio', minHeight: 500 }
-
       ]
     }
   }
