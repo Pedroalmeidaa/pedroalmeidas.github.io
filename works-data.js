@@ -146,7 +146,7 @@ window.WORKS = [
     videoEmbed: 'https://www.youtube.com/embed/xcInFGICfXw?si=SzpEi7yGZ9jz0Ni3&autoplay=1&rel=0',
     thumbVideo: 'assets/thumbs/Canal-Youtube-Hotmart-Demo-Reel-thumb.mp4',
     thumbVideoWebm: 'assets/thumbs/itau-conexoes.webm',
-    desc: '<p>Direção e pós-produção do canal oficial da Hotmart no YouTube em 2025, ano em que o canal atingiu o marco histórico de 1 milhão de inscritos. O trabalho resultou em superação de 100% dos indicadores acompanhados em relação a 2024, com destaque para o crescimento de 785% em novos inscritos, 166% em watchtime — totalizando 478 mil horas assistidas — e 133% em volume de comentários. O ano fechou com a estreia da nova editoria Só Se Fala Nisso, cujo MVP ultrapassou 50 mil views orgânicas e 5 mil horas assistidas em menos de 10 dias.</p>',
+    desc: '<p>Direção criativa do canal oficial da Hotmart no YouTube em 2025, ano em que o canal atingiu 1 milhão de inscritos. Conduzi a operação criativa em parceria com a coordenação de conteúdo, com superação de 100% dos indicadores em relação a 2024, com destaque para crescimento de 785% em novos inscritos, 166% em watchtime totalizando 478 mil horas assistidas, e 133% em volume de comentários. Conduzi a aplicação criativa do rebranding da Hotmart no canal em parceria com o time de branding, definindo o sistema visual das telas de editorias com a nova tipografia proprietária da marca, padrões de cor, variações tipográficas e estilo de inserções gráficas, em colaboração com a designer do squad.</p>',
     bts: {
       label: 'Making of',
       title: 'Bastidores',
@@ -166,7 +166,7 @@ window.WORKS = [
     videoEmbed: 'https://www.youtube.com/embed/liYEbdR0yGk?autoplay=1&rel=0',
     thumbVideo: 'assets/thumbs/academy-ace.mp4',
     thumbVideoWebm: 'assets/thumbs/natura-origens.webm',
-    desc: '<p>Com um time de professores formado por Victor Damásio, Micha Menezes, André Cia, Gislene Isquierdo, Barbara Bruna, Valeska Bruzzi, Cadu Neiva, Gabi Salles, Pedro Sobral, Aloísio Júnior, Priscila Zillo, Rejane Toigo e Geronimo Theml, você vai aprender a criar um produto do zero e ainda terá acesso a técnicas avançadas de posicionamento de mercado, tráfego pago, copywriting e crescimento em redes sociais.</p>',
+    desc: '<p>Liderança criativa do Hotmart Academy, hub educacional para creators iniciantes na plataforma. Conduzi a concepção criativa 360º do produto, dirigindo squad multidisciplinar composto por PMO, copywriter e designer, além de fornecedores externos de edição, motion e captação. Defini o conceito criativo, a linguagem audiovisual e, em parceria com a designer, a estrutura visual das landing pages, layouts de apresentação e thumbnails, garantindo aplicação consistente do brand book da Hotmart e elevando o padrão estético das entregas. O hub gerou impacto direto em métricas de negócio, com alunos vendendo até 2.6 vezes mais rápido, 3x mais produtos aprovados e 4.6x mais produtos criados em relação a usuários que não passaram pela jornada.</p>',
     bts: {
       label: 'Making of',
       title: 'Bastidores',

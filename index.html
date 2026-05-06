@@ -1048,8 +1048,13 @@ async function handleForm(e) {
       btn.style.background = 'var(--accent2)'; btn.style.color = '#0a0a0a';
       form.reset();
       setTimeout(() => { btn.textContent = 'Enviar e receber resposta em 24h'; btn.style.background = ''; btn.style.color = ''; btn.disabled = false; }, 4500);
-    } else { throw new Error(); }
-  } catch {
+    } else {
+      const data = await res.json().catch(() => ({}));
+      console.error('[Formspree] HTTP', res.status, data);
+      throw new Error(JSON.stringify(data));
+    }
+  } catch (err) {
+    console.error('[Form] erro ao enviar:', err.message);
     btn.textContent = 'Erro ao enviar. Tente novamente.';
     btn.style.background = '#c0392b'; btn.style.color = '#fff';
     setTimeout(() => { btn.textContent = 'Enviar e receber resposta em 24h'; btn.style.background = ''; btn.style.color = ''; btn.disabled = false; }, 3000);
